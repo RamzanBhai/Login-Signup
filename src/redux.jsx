@@ -1,4 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import TodoSlice from './TodoSlice'
 const loadUsers = () => JSON.parse(localStorage.getItem("users")) || [];
 const authSlice = createSlice({
   name: "auth",
@@ -17,5 +18,6 @@ const authSlice = createSlice({
 export const { signUp, login } = authSlice.actions;
  export const store = configureStore({ reducer: { 
   auth: authSlice.reducer,
+  todo:TodoSlice,
 
  } });

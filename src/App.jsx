@@ -5,14 +5,16 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Success } from "./Success";
 import { store } from "./redux";
+import Todo from "./Todo";
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/success" element={<Success/>} />
+          <Route path="/todo" element={<Todo/>} />
         </Routes>
       </Router>
     </Provider>

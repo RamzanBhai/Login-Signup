@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./redux";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -13,13 +14,17 @@ export const Login = () => {
 
   const onSubmit = (data) => {
     const user = users.find((user) => user.email === data.email && user.password === data.password);
-    if (user) {
+    const usered = users.find((user) => user.email === data.email && user.password !== data.password);
+    if(usered){
+      alert("Please enter correct password");
+      window.location.href = "/login";
+    }else if (user) {
       dispatch(login(user));
       alert("Login successful!");
       window.location.href = "/success";
     } else {
       alert("User not found! Redirecting to signup.");
-      window.location.href = "/signup";
+      window.location.href = "/";
     }
   };
 
@@ -34,6 +39,7 @@ export const Login = () => {
       {errors.password && <p className="text-red-600 mb-4 font-semibold">{errors.password.message}</p>}
       
       <button className="bg-blue-600 p-1 rounded-lg text-xl font-bold text-white" type="submit">Login</button>
+      <p className="p-2 font-bold"> If don't have an account !  <Link to='/' className="text-blue-600 m-1 underline hover:text-blue-900">signup </Link></p>
     </form>
     </div>
   );
