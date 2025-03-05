@@ -1,8 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-
 const loadUsers = () => JSON.parse(localStorage.getItem("users")) || [];
-
-// Redux Slice for User Authentication
 const authSlice = createSlice({
   name: "auth",
   initialState: { users: loadUsers(), currentUser: null },
